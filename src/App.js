@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./Home";
+import Navbar from "./Navbar";
 import Post from "./Post";
 
 export default function App() {
@@ -14,13 +15,15 @@ export default function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/about">
+          <Route path="/admin/:id">
             <p>about</p>
           </Route>
           <Route path="/post/:id">
+            <Navbar title='Post' logic='Login' />
             <Post />
           </Route>
           <Route path="/">
+            <Navbar title='Homepage' logic='Login' />
             <Home />
           </Route>
         </Switch>
