@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import './styles.css'
-import { HeartIcon } from '@heroicons/react/solid'
+import { PencilAltIcon } from '@heroicons/react/solid'
 import { useSelector } from "react-redux";
 import { selectLoginList } from "../store/loginSlice";
 
@@ -36,7 +36,9 @@ const Admin = () => {
             <p className="body">{posts.body}</p>
           </Link>
           <div className="right">
-            <HeartIcon className="icon" />
+            <Link to={`post/${posts.id}/edit`} >
+              <PencilAltIcon className="icon" />
+            </Link>
           </div>
         </div>
       ))}

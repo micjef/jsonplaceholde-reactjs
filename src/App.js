@@ -10,13 +10,18 @@ import Admin from "./Admin";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Post from "./Post";
+import PostUpdate from "./PostUpdate";
 
 export default function App() {
   return (
     <Router>
       <div>
         <Switch>
-        <Route path="/admin/post/:id">
+         <Route path="/admin/post/:id/edit">
+            <Navbar title='Admin' logic='Log Out' />
+            <PostUpdate />
+          </Route>
+          <Route path="/admin/post/:id">
             <Navbar title='Admin' logic='Log Out' />
             <Post />
           </Route>
