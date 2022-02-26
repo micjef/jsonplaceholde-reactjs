@@ -1,9 +1,30 @@
-import React from 'react'
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-const App = () => {
+import Home from "./Home";
+import Post from "./Post";
+
+export default function App() {
   return (
-    <div></div>
-  )
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/about">
+            <p>about</p>
+          </Route>
+          <Route path="/post/:id">
+            <Post />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
-
-export default App

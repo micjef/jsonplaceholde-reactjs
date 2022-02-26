@@ -1,0 +1,39 @@
+.post{
+  padding: 0 10%;
+}
+
+.post .title{
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cardPost{
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 10px 20px;
+}
+
+.cardPost:nth-child(even){
+  background-color: #eee;
+}
+
+.cardPost:hover{
+  background-color: lightgray;
+}
+
+.cardPost .title{
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cardPost .email{
+  font-size: 14px;
+  font-size: 400;
+}
