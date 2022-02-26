@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { saveLogin } from "../store/loginSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAllLogin, saveLogin, selectLoginList } from "../store/loginSlice";
 
 const Navbar = ({ title, logic }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +10,8 @@ const Navbar = ({ title, logic }) => {
   const [mail, setMail] = useState("");
 
   const dispatch = useDispatch();
+
+  const userId = useSelector(selectLoginList)
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -22,7 +24,10 @@ const Navbar = ({ title, logic }) => {
         mail: mail,
       })
     );
-    console.log(id, mail);
+
+    {logic === 'Log Out' && (
+      dispatch(deleteAllLogin)
+    )}
   };
 
   return (
@@ -37,7 +42,7 @@ const Navbar = ({ title, logic }) => {
             </>
           ) : (
             <>
-              <Link to="/admin" className="title">
+              <Link to={`/admin/${userId[0].id}`} className="title">
                 <p className="title">{title}</p>
               </Link>
             </>
@@ -54,25 +59,29 @@ const Navbar = ({ title, logic }) => {
           content={
             <>
               <b>{logic}</b>
-              <div>
-                <p>User Id</p>
-                <input
-                  type="text"
-                  value={id}
-                  onChange={(e) => setId(e.target.value)}
-                  placeholder=" user id"
-                />
-              </div>
-              <div>
-                <p>Email</p>
-                <input
-                  type="text"
-                  value={mail}
-                  onChange={(e) => setMail(e.target.value)}
-                  placeholder="email"
-                />
-              </div>
-              <Link to={`/admin/${id}`}>
+              {logic === 'Login' && (
+                <div>
+                  <p>User Id</p>
+                  <input
+                    type="text"
+                    value={id}
+                    onChange={(e) => setId(e.target.value)}
+                    placeholder=" user id"
+                  />
+                </div>
+              )}
+              {logic === 'Login' && (
+                <div>
+                  <p>Email</p>
+                  <input
+                    type="text"
+                    value={mail}
+                    onChange={(e) => setMail(e.target.value)}
+                    placeholder="email"
+                  />
+                </div>
+              )}
+              <Link to={logic === 'Login' ? (`/admin/${id}`) : ('/')} handleClose={togglePopup}>
                 <button onClick={doLogic}>{logic}</button>
               </Link>
             </>

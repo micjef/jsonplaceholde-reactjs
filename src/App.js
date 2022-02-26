@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Admin from "./Admin";
 
 import Home from "./Home";
 import Navbar from "./Navbar";
@@ -15,8 +16,13 @@ export default function App() {
     <Router>
       <div>
         <Switch>
+        <Route path="/admin/post/:id">
+            <Navbar title='Admin' logic='Log Out' />
+            <Post />
+          </Route>
           <Route path="/admin/:id">
-            <p>about</p>
+            <Navbar title='Admin' logic='Log Out' />
+            <Admin />
           </Route>
           <Route path="/post/:id">
             <Navbar title='Post' logic='Login' />
